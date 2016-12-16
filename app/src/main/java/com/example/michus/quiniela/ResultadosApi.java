@@ -1,6 +1,7 @@
 package com.example.michus.quiniela;
 
 import android.net.Uri;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,19 +29,25 @@ public class ResultadosApi {
                 .appendQueryParameter("matchday",jornada)
                 .build();
         String urls = builtUri.toString();
+
         try{
             String JsonResponse=HttpUtils.get(urls);
             JSONObject json = new JSONObject(JsonResponse);
             //creamos un array de cada elemento que forma parte de la estrucutra del objeto json ,guiandonos por el elemento que
             //envueleve toda la estructura que es
             JSONArray jsonres = json.getJSONArray("fixtures");
+
             for (int i = 0; i <jsonres.length() ; i++) {
                 JSONObject object = jsonres.getJSONObject(i);
                 String local=object.getString("homeTeamName");
+                //Log.d("----LOCAL----", local);
                 String visitante=object.getString("awayTeamName");
+                //Log.d("----VISITANTE----", visitante);
                 JSONObject goles =object.getJSONObject("result");
                 int gollocal=goles.getInt("goalsHomeTeam");
+                //Log.d("----GOLLOCAL----", String.valueOf(gollocal));
                 int golvisit=goles.getInt("goalsAwayTeam");
+                //Log.d("----GOLVISIT----", String.valueOf(golvisit));
                 Resultados resultado=new Resultados(local,visitante,gollocal,golvisit);
                 Aresultados.add(resultado);
             }
@@ -50,6 +57,7 @@ public class ResultadosApi {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         return Aresultados;
     }
 }

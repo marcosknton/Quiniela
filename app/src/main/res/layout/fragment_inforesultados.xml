@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintRight_toRightOf="parent"
-        android:src="@drawable/dos_sin_tachar" />
+         />
 
     <TextView
         android:text="Tvlocal"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintRight_toLeftOf="@+id/Ivequis"
-        android:src="@drawable/uno_sin_tachar" />
+         />
 
     <ImageView
         android:layout_width="60dp"
@@ -67,5 +67,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintRight_toLeftOf="@+id/Ivdos"
-        android:src="@drawable/equis_sin_tachar" />
+         />
 </android.support.constraint.ConstraintLayout>

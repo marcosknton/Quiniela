@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,28 +33,32 @@ public class Resultadosadapter extends ArrayAdapter<Resultados> {
 
         if(convertView==null){
             LayoutInflater inflater=LayoutInflater.from(getContext());
-            convertView=inflater.inflate(R.layout.fragment_main,parent,false);
+            convertView=inflater.inflate(R.layout.fragment_inforesultados,parent,false);
         }
-        TextView Tvlocal=(TextView) convertView.findViewById(R.id.Tvlocal);
-        TextView Tvvisitante=(TextView) convertView.findViewById(R.id.Tvvisitante);
-        ImageView Ivuno=(ImageView) convertView.findViewById(R.id.Ivuno);
-        ImageView Ivequis=(ImageView) convertView.findViewById(R.id.Ivequis);
-        ImageView Ivdos=(ImageView) convertView.findViewById(R.id.Ivdos);
+        TextView local=(TextView) convertView.findViewById(R.id.Tvlocal);
+        TextView visitante=(TextView) convertView.findViewById(R.id.Tvvisitante);
+        ImageView uno=(ImageView) convertView.findViewById(R.id.Ivuno);
+        ImageView equis=(ImageView) convertView.findViewById(R.id.Ivequis);
+        ImageView dos=(ImageView) convertView.findViewById(R.id.Ivdos);
 
-        Tvlocal.setText(resultado.getLocal());
-        Tvvisitante.setText(resultado.getVisitante());
-        if (resultado.gollocal>resultado.getGolvisit()){
-            Ivuno.getResources().getDrawable(R.drawable.uno_tachado,null);
-        }
+
+        local.setText(resultado.getLocal());
+        visitante.setText(resultado.getVisitante());
+        if (resultado.getGollocal()>resultado.getGolvisit()){
+            uno.setImageResource(R.drawable.uno_tachado);
+            Log.d("local", "uno");
+        }else uno.setImageResource(R.drawable.uno_sin_tachar);
         if (resultado.getGollocal()<resultado.getGolvisit()){
-            Ivequis.getResources().getDrawable(R.drawable.dos_tachado,null);
-        }
+            dos.setImageResource(R.drawable.dos_tachado);
+            Log.d("local", "dos");
+        }else dos.setImageResource(R.drawable.dos_sin_tachar);
         if (resultado.getGollocal()==resultado.getGolvisit()){
-            Ivdos.getResources().getDrawable(R.drawable.equis_tachado,null);
-        }
+            equis.setImageResource(R.drawable.equis_tachado);
+            Log.d("local", "equis");
+        }else equis.setImageResource(R.drawable.equis_sin_tachar);
 
         return  convertView;
 
-        
+
     }
 }

@@ -3,6 +3,7 @@ package com.example.michus.quiniela;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class MainActivityFragment extends Fragment {
     public MainActivityFragment() {
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class MainActivityFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ListView lvresultados=(ListView)view.findViewById(R.id.lvresultados);
         items =new ArrayList<>();
-        adapter= new Resultadosadapter(getContext(),R.layout.fragment_main,items);
+        adapter= new Resultadosadapter(getContext(),R.layout.fragment_inforesultados,items);
         lvresultados.setAdapter(adapter);
         return view;
     }
@@ -39,18 +41,21 @@ public class MainActivityFragment extends Fragment {
         super.onStart();
         refresh();
     }
-
     private void refresh(){
-    RefreshDataTask task=new RefreshDataTask();
+        RefreshDataTask task=new RefreshDataTask();
         task.execute();
     }
+
+
+
+
 
     private class RefreshDataTask extends AsyncTask<Void,Void,ArrayList<Resultados>>{
         @Override
         protected ArrayList<Resultados> doInBackground(Void... voids) {
 
             ResultadosApi api=new ResultadosApi();
-            ArrayList<Resultados> result=api.Getresultados("14");
+            ArrayList<Resultados> result=api.Getresultados("15");
             return result;
         }
 
@@ -59,6 +64,7 @@ public class MainActivityFragment extends Fragment {
             adapter.clear();
             for(Resultados resultado: result){
                 adapter.add(resultado);
+
             }
 
         }
