@@ -13,6 +13,7 @@ public class Resultados {
 
 
 
+
     public Resultados(String local, String visitante, int gollocal, int golvisit) {
 
         this.local = local;
