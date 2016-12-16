@@ -34,6 +34,16 @@ public class MainActivityFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        refresh();
+    }
+
+    private void refresh(){
+    RefreshDataTask task=new RefreshDataTask();
+        task.execute();
+    }
 
     private class RefreshDataTask extends AsyncTask<Void,Void,ArrayList<Resultados>>{
         @Override
@@ -45,9 +55,9 @@ public class MainActivityFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Resultados> resultadoses) {
+        protected void onPostExecute(ArrayList<Resultados> result) {
             adapter.clear();
-            for(Resultados resultado: resultadoses){
+            for(Resultados resultado: result){
                 adapter.add(resultado);
             }
 

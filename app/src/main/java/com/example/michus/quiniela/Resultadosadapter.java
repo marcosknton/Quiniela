@@ -53,5 +53,7 @@ public class Resultadosadapter extends ArrayAdapter<Resultados> {
         }
 
         return  convertView;
+
+        
     }
 }
