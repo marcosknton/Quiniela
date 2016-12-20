@@ -1,6 +1,8 @@
 package com.example.michus.quiniela;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,9 +55,10 @@ public class MainActivityFragment extends Fragment {
     private class RefreshDataTask extends AsyncTask<Void,Void,ArrayList<Resultados>>{
         @Override
         protected ArrayList<Resultados> doInBackground(Void... voids) {
-
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            String sjornada=preferences.getString("matchday","");
             ResultadosApi api=new ResultadosApi();
-            ArrayList<Resultados> result=api.Getresultados("15");
+            ArrayList<Resultados> result=api.Getresultados(sjornada);
             return result;
         }
 
