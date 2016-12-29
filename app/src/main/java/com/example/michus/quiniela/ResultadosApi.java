@@ -40,15 +40,17 @@ public class ResultadosApi {
             for (int i = 0; i <jsonres.length() ; i++) {
                 JSONObject object = jsonres.getJSONObject(i);
                 String local=object.getString("homeTeamName");
-                //Log.d("----LOCAL----", local);
+                Log.d("----LOCAL----", local);
                 String visitante=object.getString("awayTeamName");
-                //Log.d("----VISITANTE----", visitante);
+                Log.d("----VISITANTE----", visitante);
+                String status=object.getString("status");
+                Log.d("----STATUS----", String.valueOf(status));
                 JSONObject goles =object.getJSONObject("result");
-                int gollocal=goles.getInt("goalsHomeTeam");
+                String gollocal=goles.getString("goalsHomeTeam");
                 //Log.d("----GOLLOCAL----", String.valueOf(gollocal));
-                int golvisit=goles.getInt("goalsAwayTeam");
+                String golvisit=goles.getString("goalsAwayTeam");
                 //Log.d("----GOLVISIT----", String.valueOf(golvisit));
-                Resultados resultado=new Resultados(local,visitante,gollocal,golvisit);
+                Resultados resultado=new Resultados(local,visitante,gollocal,golvisit,status);
                 Aresultados.add(resultado);
             }
 

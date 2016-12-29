@@ -8,19 +8,30 @@ public class Resultados {
 
     String local;
     String visitante;
-    int gollocal;
-    int golvisit;
+    String status;
+    String gollocal;
+    String golvisit;
 
 
+    public String getStatus() {
+        return status;
+    }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-    public Resultados(String local, String visitante, int gollocal, int golvisit) {
+    public Resultados(String local, String visitante, String gollocal, String golvisit, String status) {
 
         this.local = local;
         this.visitante = visitante;
         this.gollocal = gollocal;
         this.golvisit = golvisit;
+        this.status=status;
+
     }
+
+
 
     public String getLocal() {
         return local;
@@ -30,19 +41,19 @@ public class Resultados {
         this.local = local;
     }
 
-    public int getGollocal() {
+    public String getGollocal() {
         return gollocal;
     }
 
-    public void setGollocal(int gollocal) {
+    public void setGollocal(String gollocal) {
         this.gollocal = gollocal;
     }
 
-    public int getGolvisit() {
+    public String getGolvisit() {
         return golvisit;
     }
 
-    public void setGolvisit(int golvisit) {
+    public void setGolvisit(String golvisit) {
         this.golvisit = golvisit;
     }
 

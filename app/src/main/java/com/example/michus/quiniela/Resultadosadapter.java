@@ -30,6 +30,9 @@ public class Resultadosadapter extends ArrayAdapter<Resultados> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         Resultados resultado=getItem(position);
+        int gollocal=0;
+        int golvisitante=0;
+
 
         if(convertView==null){
             LayoutInflater inflater=LayoutInflater.from(getContext());
@@ -41,24 +44,47 @@ public class Resultadosadapter extends ArrayAdapter<Resultados> {
         ImageView equis=(ImageView) convertView.findViewById(R.id.Ivequis);
         ImageView dos=(ImageView) convertView.findViewById(R.id.Ivdos);
 
-
         local.setText(resultado.getLocal());
         visitante.setText(resultado.getVisitante());
-        if (resultado.getGollocal()>resultado.getGolvisit()){
-            uno.setImageResource(R.drawable.uno_tachado);
-            Log.d("local", "uno");
-        }else uno.setImageResource(R.drawable.uno_sin_tachar);
-        if (resultado.getGollocal()<resultado.getGolvisit()){
-            dos.setImageResource(R.drawable.dos_tachado);
-            Log.d("local", "dos");
-        }else dos.setImageResource(R.drawable.dos_sin_tachar);
-        if (resultado.getGollocal()==resultado.getGolvisit()){
-            equis.setImageResource(R.drawable.equis_tachado);
-            Log.d("local", "equis");
-        }else equis.setImageResource(R.drawable.equis_sin_tachar);
+
+        if (resultado.getStatus().equals("SCHEDULED")||resultado.getStatus().equals("POSTPONED")) {
+            uno.setImageResource(R.drawable.uno_sin_tachar);
+            dos.setImageResource(R.drawable.dos_sin_tachar);
+            equis.setImageResource(R.drawable.equis_sin_tachar);
+        }
+        else {
+            gollocal = Integer.parseInt(resultado.getGollocal());
+            golvisitante = Integer.parseInt(resultado.getGolvisit());
+
+
+            if (gollocal > golvisitante) {
+                uno.setImageResource(R.drawable.uno_tachado);
+                Log.d("local", "uno");
+                Log.d("----STATUS-----", String.valueOf(resultado.getStatus()));
+            } else uno.setImageResource(R.drawable.uno_sin_tachar);
+            if (gollocal < golvisitante) {
+                dos.setImageResource(R.drawable.dos_tachado);
+                Log.d("local", "dos");
+                Log.d("----STATUS----", String.valueOf(resultado.getStatus()));
+            } else dos.setImageResource(R.drawable.dos_sin_tachar);
+            if (gollocal == golvisitante) {
+                equis.setImageResource(R.drawable.equis_tachado);
+                Log.d("local", "equis");
+                Log.d("----STATUS----", String.valueOf(resultado.getStatus()));
+            } else equis.setImageResource(R.drawable.equis_sin_tachar);
+        }
 
         return  convertView;
 
 
+    }
+
+    private static boolean isNumeric(String cadena){
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe){
+            return false;
+        }
     }
 }
