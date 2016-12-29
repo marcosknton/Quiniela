@@ -9,8 +9,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.alexvasilkov.events.Events;
+
+import static com.example.michus.quiniela.R.id.Tvjornada;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
+        // registramos al suscriptor dentro del bus de eventos. Esto se hace pasando la instancia del objeto que contiene el método
+        Events.register(this);
     }
 
     @Override
@@ -44,5 +51,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    //Los suscriptores son los métodos que serán llamados obteniendo el parámetro del bus y realizando las acciones descritas dentro del método
+    @Events.Subscribe("traspaso_jornada")
+    private void passjornada(String sjornada) {
+        TextView jornada = (TextView) findViewById(Tvjornada);
+        jornada.setText("jornada "+sjornada);
     }
 }

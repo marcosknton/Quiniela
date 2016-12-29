@@ -23,6 +23,7 @@ public class ResultadosApi {
     private static String url="http://api.football-data.org/v1/competitions/436/fixtures?";
 
     public ArrayList<Resultados> Getresultados(String jornada){
+        Log.d("----jornada----", jornada);
         ArrayList <Resultados> Aresultados=new ArrayList<>();
         Uri builtUri = Uri.parse(url)
                 .buildUpon()

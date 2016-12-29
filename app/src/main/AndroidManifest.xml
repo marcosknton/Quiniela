@@ -26,7 +26,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Jornada"
-            android:label="@string/title_activity_jornada"></activity>
+            android:label="@string/title_activity_jornada" />
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/title_activity_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
