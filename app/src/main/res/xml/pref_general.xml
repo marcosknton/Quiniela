@@ -8,13 +8,16 @@
 
      NOTE: EditTextPreference accepts EditText attributes. -->
      NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+
+
     <EditTextPreference
         android:capitalize="words"
         android:defaultValue="14"
         android:inputType="textCapWords"
         android:key="matchday"
         android:selectAllOnFocus="true"
-        android:title="Escribe el numero de la jornada           de las 38 que existen" />
+        android:lines="4"
+        android:title="Escribe el nº de la jornada" />
 
     <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it. -->

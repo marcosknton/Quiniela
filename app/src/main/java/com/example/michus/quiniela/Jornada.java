@@ -130,6 +130,8 @@ public class Jornada extends AppCompatPreferenceActivity {
         if (actionBar != null) {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
+
+
         }
     }
 
@@ -185,7 +187,7 @@ public class Jornada extends AppCompatPreferenceActivity {
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
-                startActivity(new Intent(getActivity(), Jornada.class));
+                startActivity(new Intent(getActivity(), MainActivity.class));
                 return true;
             }
             return super.onOptionsItemSelected(item);

@@ -1,5 +1,6 @@
 package com.example.michus.quiniela;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,12 @@ public class DetailActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_detail, container, false);
+        View view= inflater.inflate(R.layout.fragment_detail, container, false);
+        Intent i=getActivity().getIntent();
+    if (i!=null){
+        Resultados resultado=(Resultados) i.getSerializableExtra("resultado");
+    }
+
+        return view;
     }
 }

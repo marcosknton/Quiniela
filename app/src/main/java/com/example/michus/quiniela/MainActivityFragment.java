@@ -1,17 +1,21 @@
 package com.example.michus.quiniela;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.alexvasilkov.events.Events;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -36,6 +40,16 @@ public class MainActivityFragment extends Fragment {
         items =new ArrayList<>();
         adapter= new Resultadosadapter(getContext(),R.layout.fragment_inforesultados,items);
         lvresultados.setAdapter(adapter);
+
+        lvresultados.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?>adapterView, View view, int i, long l) {
+            Resultados resultados= (Resultados) adapterView.getItemAtPosition(i);
+            Intent intent=new Intent(getContext(),DetailActivity.class);
+                intent.putExtra("resultado", (Serializable) resultados);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

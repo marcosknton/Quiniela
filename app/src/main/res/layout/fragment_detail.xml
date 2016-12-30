@@ -1,15 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.michus.quiniela.DetailActivityFragment"
     tools:showIn="@layout/activity_detail">
 
 
-</RelativeLayout>
+    <TextView
+        android:text="Tvposvisitante"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvposvisitante"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Ivvistante"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5" />
+
+    <TextView
+        android:text="Tvposlocal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvposlocal"
+        app:layout_constraintRight_toLeftOf="@+id/guideline2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/Ivvistante"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/Ivlocal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideline2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="1.0" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline2"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="194dp"
+        app:layout_constraintGuide_percent="0.5052083" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline3"
+        app:layout_constraintGuide_percent="0.52747256"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="240dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline4"
+        app:layout_constraintGuide_percent="0.22197802"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="101dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:text="Tvlocalname"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvlocalname"
+        app:layout_constraintRight_toLeftOf="@+id/guideline2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/Ivlocal"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline5"
+        app:layout_constraintGuide_percent="0.64615387"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="294dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:text="Tvhomewin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvhomewin"
+        app:layout_constraintRight_toLeftOf="@+id/Tvawaywin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6" />
+
+    <TextView
+        android:text="Tvawaywin"
+        android:layout_width="192dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvawaywin"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline6"
+        app:layout_constraintGuide_percent="0.756044"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="344dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:text="Tvhomeempate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvhomeempate"
+        app:layout_constraintTop_toBottomOf="@+id/Tvhomewin"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintRight_toLeftOf="@+id/guideline2"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline7"
+        app:layout_constraintGuide_percent="0.8879121"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="404dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:text="Tvawayempate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvawayempate"
+        app:layout_constraintTop_toTopOf="@+id/guideline6"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintLeft_toRightOf="@+id/Tvhomeempate"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:text="Tvhomelose"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvhomelose"
+        app:layout_constraintTop_toTopOf="@+id/guideline7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideline2" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline8"
+        app:layout_constraintGuide_percent="0.15"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="68dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:text="Tvresultadolocal1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvresultadolocal1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintRight_toLeftOf="@+id/guideline2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:text="Tvresultadovisitante1"
+        android:layout_width="192dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvresultadovisitante1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/Tvlocalname" />
+
+    <TextView
+        android:text="Tvawayname"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvawayname"
+        app:layout_constraintBottom_toTopOf="@+id/Ivvistante"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvawaylose"
+        app:layout_constraintTop_toTopOf="@+id/guideline7"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/Tvhomelose" />
+</android.support.constraint.ConstraintLayout>
