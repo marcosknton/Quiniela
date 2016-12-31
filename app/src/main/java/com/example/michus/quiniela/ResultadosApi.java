@@ -16,51 +16,88 @@ import java.util.ArrayList;
 
 public class ResultadosApi {
 
-    public  ResultadosApi(){
+    public ResultadosApi() {
 
     }
 
-    private static String url="http://api.football-data.org/v1/competitions/436/fixtures?";
+    private static String url = "http://api.football-data.org/v1/competitions/436/fixtures?";
 
-    public ArrayList<Resultados> Getresultados(String jornada){
+
+    public ArrayList<Resultados> Getresultados(String jornada,ArrayList <Equipo> Aequipos) throws IOException, JSONException {
+
+
         Log.d("----jornada----", jornada);
-        ArrayList <Resultados> Aresultados=new ArrayList<>();
+        Equipo teamhome;
+        Equipo teamaway;
+        ArrayList<Resultados> Aresultados = new ArrayList<>();
+
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
-                .appendQueryParameter("matchday",jornada)
+                .appendQueryParameter("matchday", jornada)
                 .build();
+
         String urls = builtUri.toString();
 
-        try{
-            String JsonResponse=HttpUtils.get(urls);
+
+            String JsonResponse = HttpUtils.get(urls);
             JSONObject json = new JSONObject(JsonResponse);
             //creamos un array de cada elemento que forma parte de la estrucutra del objeto json ,guiandonos por el elemento que
             //envueleve toda la estructura que es
             JSONArray jsonres = json.getJSONArray("fixtures");
 
-            for (int i = 0; i <jsonres.length() ; i++) {
+            for (int i = 0; i < jsonres.length(); i++) {
                 JSONObject object = jsonres.getJSONObject(i);
-                String local=object.getString("homeTeamName");
+                String local = object.getString("homeTeamName");
                 Log.d("----LOCAL----", local);
-                String visitante=object.getString("awayTeamName");
+                String visitante = object.getString("awayTeamName");
                 Log.d("----VISITANTE----", visitante);
-                String status=object.getString("status");
+                String status = object.getString("status");
                 Log.d("----STATUS----", String.valueOf(status));
-                JSONObject goles =object.getJSONObject("result");
-                String gollocal=goles.getString("goalsHomeTeam");
+                JSONObject goles = object.getJSONObject("result");
+                String gollocal = goles.getString("goalsHomeTeam");
                 //Log.d("----GOLLOCAL----", String.valueOf(gollocal));
-                String golvisit=goles.getString("goalsAwayTeam");
+                String golvisit = goles.getString("goalsAwayTeam");
                 //Log.d("----GOLVISIT----", String.valueOf(golvisit));
-                Resultados resultado=new Resultados(local,visitante,gollocal,golvisit,status);
+                teamhome=returnlocal(Aequipos,local);
+                teamaway=returnaway(Aequipos,visitante);
+                Resultados resultado = new Resultados(teamhome, teamaway, gollocal, golvisit, status);
                 Aresultados.add(resultado);
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
+        return Aresultados;
         }
 
-        return Aresultados;
+    private Equipo returnaway(ArrayList<Equipo> aequipos, String visitante) {
+        Equipo equipovisit = null;
+        boolean check=true;
+        for (int i = 0; i < aequipos.size()&&check==true; i++) {
+            Equipo equipo = aequipos.get(i);
+            String nombre=equipo.getNombre();
+            if (nombre.equalsIgnoreCase(visitante)) {
+                equipovisit=equipo;
+                check=false;
+            }
+        }
+
+        return equipovisit;
     }
+
+    public Equipo returnlocal(ArrayList<Equipo> Aequipos, String local) {
+        Equipo equipolocal = null;
+        boolean check=true;
+        for (int i = 0; i < Aequipos.size()&&check==true; i++) {
+            Equipo equipo = Aequipos.get(i);
+            String nombre=equipo.getNombre();
+            if (nombre.equalsIgnoreCase(local)) {
+                equipolocal=equipo;
+                check=false;
+            }
+
+        }
+
+        return equipolocal;
+    }
+
+
+
+
 }

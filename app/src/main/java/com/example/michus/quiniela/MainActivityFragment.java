@@ -15,6 +15,9 @@ import android.widget.ListView;
 
 import com.alexvasilkov.events.Events;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -39,6 +42,7 @@ public class MainActivityFragment extends Fragment {
         ListView lvresultados=(ListView)view.findViewById(R.id.lvresultados);
         items =new ArrayList<>();
         adapter= new Resultadosadapter(getContext(),R.layout.fragment_inforesultados,items);
+
         lvresultados.setAdapter(adapter);
 
         lvresultados.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -46,7 +50,7 @@ public class MainActivityFragment extends Fragment {
             public void onItemClick(AdapterView<?>adapterView, View view, int i, long l) {
             Resultados resultados= (Resultados) adapterView.getItemAtPosition(i);
             Intent intent=new Intent(getContext(),DetailActivity.class);
-                intent.putExtra("resultado", (Serializable) resultados);
+                intent.putExtra("resultado", resultados);
                 startActivity(intent);
             }
         });
@@ -73,7 +77,16 @@ public class MainActivityFragment extends Fragment {
             //creamos un evento y enviamos el parametro a traves del bus
             Events.create("traspaso_jornada").param(sjornada).post();
             ResultadosApi api=new ResultadosApi();
-            ArrayList<Resultados> result=api.Getresultados(sjornada);
+            EquiposApi apiteams=new EquiposApi();
+            ArrayList<Equipo> aequipos=apiteams.Getequipos();
+            ArrayList<Resultados> result= null;
+            try {
+                result = api.Getresultados(sjornada,aequipos);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
             return result;
         }

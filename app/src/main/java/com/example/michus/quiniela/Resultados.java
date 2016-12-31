@@ -1,13 +1,16 @@
 package com.example.michus.quiniela;
 
+import java.io.Serializable;
+
 /**
  * Created by MICHUS on 11/12/2016.
  */
 
-public class Resultados {
+public class Resultados implements Serializable{
 
-    String local;
-    String visitante;
+
+    Equipo local;
+    Equipo visitante;
     String status;
     String gollocal;
     String golvisit;
@@ -21,7 +24,7 @@ public class Resultados {
         this.status = status;
     }
 
-    public Resultados(String local, String visitante, String gollocal, String golvisit, String status) {
+    public Resultados(Equipo local, Equipo visitante, String gollocal, String golvisit, String status) {
 
         this.local = local;
         this.visitante = visitante;
@@ -33,39 +36,31 @@ public class Resultados {
 
 
 
-    public String getLocal() {
+    public Equipo getLocal() {
         return local;
     }
 
-    public void setLocal(String local) {
-        this.local = local;
-    }
+
+
 
     public String getGollocal() {
         return gollocal;
     }
 
-    public void setGollocal(String gollocal) {
-        this.gollocal = gollocal;
-    }
 
     public String getGolvisit() {
         return golvisit;
     }
 
-    public void setGolvisit(String golvisit) {
-        this.golvisit = golvisit;
-    }
 
 
 
-    public String getVisitante() {
+
+    public Equipo getVisitante() {
         return visitante;
     }
 
-    public void setVisitante(String visitante) {
-        this.visitante = visitante;
-    }
+
 
 
 }

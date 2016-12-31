@@ -37,15 +37,20 @@ public class Resultadosadapter extends ArrayAdapter<Resultados> {
         if(convertView==null){
             LayoutInflater inflater=LayoutInflater.from(getContext());
             convertView=inflater.inflate(R.layout.fragment_inforesultados,parent,false);
+
         }
+
         TextView local=(TextView) convertView.findViewById(R.id.Tvlocal);
         TextView visitante=(TextView) convertView.findViewById(R.id.Tvvisitante);
         ImageView uno=(ImageView) convertView.findViewById(R.id.Ivuno);
         ImageView equis=(ImageView) convertView.findViewById(R.id.Ivequis);
         ImageView dos=(ImageView) convertView.findViewById(R.id.Ivdos);
 
-        local.setText(resultado.getLocal());
-        visitante.setText(resultado.getVisitante());
+
+
+
+        local.setText(resultado.getLocal().getNombre());
+        visitante.setText(resultado.getVisitante().getNombre());
 
         if (resultado.getStatus().equals("SCHEDULED")||resultado.getStatus().equals("POSTPONED")) {
             uno.setImageResource(R.drawable.uno_sin_tachar);
@@ -79,12 +84,5 @@ public class Resultadosadapter extends ArrayAdapter<Resultados> {
 
     }
 
-    private static boolean isNumeric(String cadena){
-        try {
-            Integer.parseInt(cadena);
-            return true;
-        } catch (NumberFormatException nfe){
-            return false;
-        }
-    }
+
 }
