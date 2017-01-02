@@ -51,6 +51,7 @@ public class ResultadosApi {
                 Log.d("----LOCAL----", local);
                 String visitante = object.getString("awayTeamName");
                 Log.d("----VISITANTE----", visitante);
+                String fecha=object.getString("date");
                 String status = object.getString("status");
                 Log.d("----STATUS----", String.valueOf(status));
                 JSONObject goles = object.getJSONObject("result");
@@ -60,7 +61,7 @@ public class ResultadosApi {
                 //Log.d("----GOLVISIT----", String.valueOf(golvisit));
                 teamhome=returnlocal(Aequipos,local);
                 teamaway=returnaway(Aequipos,visitante);
-                Resultados resultado = new Resultados(teamhome, teamaway, gollocal, golvisit, status);
+                Resultados resultado = new Resultados(fecha,teamhome, teamaway, gollocal, golvisit, status);
                 Aresultados.add(resultado);
             }
         return Aresultados;

@@ -12,6 +12,7 @@ public class Resultados implements Serializable{
     Equipo local;
     Equipo visitante;
     String status;
+    String fecha;
     String gollocal;
     String golvisit;
 
@@ -24,7 +25,13 @@ public class Resultados implements Serializable{
         this.status = status;
     }
 
-    public Resultados(Equipo local, Equipo visitante, String gollocal, String golvisit, String status) {
+    public String getFecha() {
+        return fecha;
+    }
+
+    public Resultados(String fecha, Equipo local, Equipo visitante, String gollocal, String golvisit, String status) {
+
+        this.fecha=fecha;
 
         this.local = local;
         this.visitante = visitante;

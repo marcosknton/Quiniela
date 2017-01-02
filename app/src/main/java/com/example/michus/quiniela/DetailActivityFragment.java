@@ -11,12 +11,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+
 /**
  * A placeholder fragment containing a simple view.
  */
 public class DetailActivityFragment extends Fragment {
 
     private View view;
+    private TextView Tvfecha;
+    private TextView Tvresultado;
     private TextView Tvposvisitante;
     private TextView Tvposlocal;
 
@@ -59,6 +63,9 @@ public class DetailActivityFragment extends Fragment {
 
     private void updateUi(Resultados resultado) {
 
+        Tvfecha= (TextView) view.findViewById(R.id.Tvhorario);
+        Tvresultado = (TextView) view.findViewById(R.id.Tvresultado);
+
         Tvposvisitante=(TextView)view.findViewById(R.id.Tvposvisitante);
         Tvposlocal=(TextView)view.findViewById(R.id.Tvposlocal);
 
@@ -74,31 +81,179 @@ public class DetailActivityFragment extends Fragment {
         Tvhomelose=(TextView)view.findViewById(R.id.Tvhomelose);
         Tvawaylose=(TextView)view.findViewById(R.id.Tvawaylose);
 
-        Tvresultadolocal1=(TextView)view.findViewById(R.id.Tvresultadolocal1);
-        Tvresultadovisitante1=(TextView)view.findViewById(R.id.Tvresultadovisitante1);
 
 
         Ivvistante=(ImageView) view.findViewById(R.id.Ivvistante);
         Ivlocal=(ImageView)view.findViewById(R.id.Ivlocal);
 
+        String nomlocal=resultado.getLocal().getNombre();
+        String nomvisitante=resultado.getVisitante().getNombre();
+        String horario=resultado.getStatus();
+        String[] fecha=resultado.getFecha().split("T");
+
+        switch ( horario ) {
+            case "SCHEDULED":
+                Tvfecha.setText(fecha[0]+"\n"+fecha[1].substring(0,5) );
+                Tvresultado.setText(" ");
+                break;
+            case "POSTPONED":
+                Tvfecha.setText("APLAZADO");
+                Tvresultado.setText(" ");
+                break;
+            case "FINISHED":
+                Tvfecha.setText("FIN");
+                Tvresultado.setText(resultado.gollocal+"-"+resultado.golvisit);
+
+                break;
+            default:
+                System.out.println("error" );
+                break;
+        }
 
 
-        Tvresultadolocal1.setText(resultado.gollocal);
-        Tvposlocal.setText("pos: "+resultado.getLocal().getPosliga());
-        Tvlocalname.setText(resultado.getLocal().getNombre());
-        Tvhomewin.setText("victorias locales: "+resultado.getLocal().getHomewin());
-        Tvhomeempate.setText("empates locales "+resultado.getLocal().getHomeempate());
-        Tvhomelose.setText("derrotas locales "+resultado.getLocal().getHomelose());
-        Glide.with(getContext()).load(resultado.getLocal().getImagen()).into(Ivlocal);
+        Tvposlocal.setText("posición liga: "+resultado.getLocal().getPosliga());
+        Tvlocalname.setText(nomlocal);
+        Tvhomewin.setText("victorias en casa "+resultado.getLocal().getHomewin());
+        Tvhomeempate.setText("empates en casa "+resultado.getLocal().getHomeempate());
+        Tvhomelose.setText("derrotas en casa "+resultado.getLocal().getHomelose());
+        switch ( nomlocal ) {
+            case "Real Madrid CF":
+                Ivlocal.setImageResource(R.drawable.realmadrid);
+                break;
+            case "FC Barcelona":
+                Ivlocal.setImageResource(R.drawable.barsa);
+                break;
+            case "Sevilla FC":
+                Ivlocal.setImageResource(R.drawable.sevilla);
+                break;
+            case "Villarreal CF":
+                Ivlocal.setImageResource(R.drawable.villareal);
+                break;
+            case "Real Sociedad de Fútbol":
+                Ivlocal.setImageResource(R.drawable.realsociedad);
+                break;
+            case "Club Atlético de Madrid":
+                Ivlocal.setImageResource(R.drawable.atletico);
+                break;
+            case "Athletic Club":
+                Ivlocal.setImageResource(R.drawable.atleti);
+                break;
+            case "SD Eibar":
+                Ivlocal.setImageResource(R.drawable.eibar);
+                break;
+            case "RCD Espanyol":
+                Ivlocal.setImageResource(R.drawable.espanyol);
+                break;
+            case "UD Las Palmas":
+                Ivlocal.setImageResource(R.drawable.palmas);
+                break;
+            case "Málaga CF":
+                Ivlocal.setImageResource(R.drawable.malaga);
+                break;
+            case "Deportivo Alavés":
+                Ivlocal.setImageResource(R.drawable.alaves);
+                break;
+            case "RC Celta de Vigo":
+                Ivlocal.setImageResource(R.drawable.celta);
+                break;
+            case "Real Betis":
+                Ivlocal.setImageResource(R.drawable.betis);
+                break;
+            case "RC Deportivo La Coruna":
+                Ivlocal.setImageResource(R.drawable.depor);
+                break;
+            case "CD Leganes":
+                Ivlocal.setImageResource(R.drawable.leganes);
+                break;
+            case "Valencia CF":
+                Ivlocal.setImageResource(R.drawable.valencia);
+                break;
+            case "Sporting Gijón":
+                Ivlocal.setImageResource(R.drawable.sporting);
+                break;
+            case "Granada CF":
+                Ivlocal.setImageResource(R.drawable.granada);
+                break;
+            case "CA Osasuna":
+                Ivlocal.setImageResource(R.drawable.osasuna);
+                break;
+            default:
+                System.out.println("error" );
+                break;
+        }
+
+        Tvposvisitante.setText("posición liga: "+resultado.getVisitante().getPosliga());
+        Tvawaywin.setText("victorias fuera: "+resultado.getVisitante().getAwaywin());
+        Tvawayname.setText(nomvisitante);
+        Tvawayempate.setText("empates fuera: "+resultado.getVisitante().getAwayempate());
+        Tvawaylose.setText("derrotas fuera: "+resultado.getVisitante().getAwaylose());
+        switch ( nomvisitante ) {
+            case "Real Madrid CF":
+                Ivvistante.setImageResource(R.drawable.realmadrid);
+                break;
+            case "FC Barcelona":
+                Ivvistante.setImageResource(R.drawable.barsa);
+                break;
+            case "Sevilla FC":
+                Ivvistante.setImageResource(R.drawable.sevilla);
+                break;
+            case "Villarreal CF":
+                Ivvistante.setImageResource(R.drawable.villareal);
+                break;
+            case "Real Sociedad de Fútbol":
+                Ivvistante.setImageResource(R.drawable.realsociedad);
+                break;
+            case "Club Atlético de Madrid":
+                Ivvistante.setImageResource(R.drawable.atletico);
+                break;
+            case "Athletic Club":
+                Ivvistante.setImageResource(R.drawable.atleti);
+                break;
+            case "SD Eibar":
+                Ivvistante.setImageResource(R.drawable.eibar);
+                break;
+            case "RCD Espanyol":
+                Ivvistante.setImageResource(R.drawable.espanyol);
+                break;
+            case "UD Las Palmas":
+                Ivvistante.setImageResource(R.drawable.palmas);
+                break;
+            case "Málaga CF":
+                Ivvistante.setImageResource(R.drawable.malaga);
+                break;
+            case "Deportivo Alavés":
+                Ivvistante.setImageResource(R.drawable.alaves);
+                break;
+            case "RC Celta de Vigo":
+                Ivvistante.setImageResource(R.drawable.celta);
+                break;
+            case "Real Betis":
+                Ivvistante.setImageResource(R.drawable.betis);
+                break;
+            case "RC Deportivo La Coruna":
+                Ivvistante.setImageResource(R.drawable.depor);
+                break;
+            case "CD Leganes":
+                Ivvistante.setImageResource(R.drawable.leganes);
+                break;
+            case "Valencia CF":
+                Ivvistante.setImageResource(R.drawable.valencia);
+                break;
+            case "Sporting Gijón":
+                Ivvistante.setImageResource(R.drawable.sporting);
+                break;
+            case "Granada CF":
+                Ivvistante.setImageResource(R.drawable.granada);
+                break;
+            case "CA Osasuna":
+                Ivvistante.setImageResource(R.drawable.osasuna);
+                break;
+            default:
+                System.out.println("error" );
+                break;
+        }
 
 
-        Tvresultadovisitante1.setText(resultado.golvisit);
-        Tvposvisitante.setText("pos: "+resultado.getVisitante().getPosliga());
-        Tvawaywin.setText("victorias como visitante: "+resultado.getVisitante().getAwaywin());
-        Tvawayname.setText(resultado.getVisitante().getNombre());
-        Tvawayempate.setText("empates como visitante: "+resultado.getVisitante().getAwayempate());
-        Tvawaylose.setText("derrotas como visitante: "+resultado.getVisitante().getAwaylose());
-        Glide.with(getContext()).load(resultado.getVisitante().getImagen()).into(Ivvistante);
 
 
 
