@@ -12,18 +12,18 @@ public class Equipo implements Serializable{
     String homeempate;
     String homelose;
     String nombre;
-    String matchday;
+
     String posliga;
     String awaywin;
     String awayempate;
     String awaylose;
 
-    public Equipo(String nombre, String matchday, String posliga, String homewin, String homeempate, String homelose, String awaywin, String awayempate, String awaylose) {
+    public Equipo(String nombre, String posliga, String homewin, String homeempate, String homelose, String awaywin, String awayempate, String awaylose) {
         this.homewin = homewin;
         this.homeempate = homeempate;
         this.homelose = homelose;
         this.nombre = nombre;
-        this.matchday = matchday;
+
         this.posliga = posliga;
         this.awaywin = awaywin;
         this.awayempate = awayempate;
@@ -46,9 +46,7 @@ public class Equipo implements Serializable{
         return nombre;
     }
 
-    public String getMatchday() {
-        return matchday;
-    }
+
 
     public String getPosliga() {
         return posliga;

@@ -23,13 +23,12 @@ public class ResultadosApi {
     private static String url = "http://api.football-data.org/v1/competitions/436/fixtures?";
 
 
-    public ArrayList<Resultados> Getresultados(String jornada,ArrayList <Equipo> Aequipos) throws IOException, JSONException {
-
+    public static ArrayList<Resultados> Getresultados(String jornada, ArrayList<Equipo> Aequipos) throws IOException, JSONException {
 
         Log.d("----jornada----", jornada);
-        Equipo teamhome;
-        Equipo teamaway;
         ArrayList<Resultados> Aresultados = new ArrayList<>();
+
+
 
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
@@ -37,14 +36,11 @@ public class ResultadosApi {
                 .build();
 
         String urls = builtUri.toString();
-
-
-            String JsonResponse = HttpUtils.get(urls);
-            JSONObject json = new JSONObject(JsonResponse);
-            //creamos un array de cada elemento que forma parte de la estrucutra del objeto json ,guiandonos por el elemento que
-            //envueleve toda la estructura que es
-            JSONArray jsonres = json.getJSONArray("fixtures");
-
+        String JsonResponse = HttpUtils.get(urls);
+        JSONObject json = new JSONObject(JsonResponse);
+        //creamos un array de cada elemento que forma parte de la estrucutra del objeto json ,guiandonos por el elemento que
+        //envueleve toda la estructura que es
+        JSONArray jsonres = json.getJSONArray("fixtures");
             for (int i = 0; i < jsonres.length(); i++) {
                 JSONObject object = jsonres.getJSONObject(i);
                 String local = object.getString("homeTeamName");
@@ -59,43 +55,40 @@ public class ResultadosApi {
                 //Log.d("----GOLLOCAL----", String.valueOf(gollocal));
                 String golvisit = goles.getString("goalsAwayTeam");
                 //Log.d("----GOLVISIT----", String.valueOf(golvisit));
-                teamhome=returnlocal(Aequipos,local);
-                teamaway=returnaway(Aequipos,visitante);
-                Resultados resultado = new Resultados(fecha,teamhome, teamaway, gollocal, golvisit, status);
-                Aresultados.add(resultado);
+                Resultados resultado = new Resultados(status,fecha,gollocal,golvisit);
+                Aresultados.add(llenarresultado(Aequipos,local,visitante,resultado));
             }
         return Aresultados;
         }
 
-    private Equipo returnaway(ArrayList<Equipo> aequipos, String visitante) {
-        Equipo equipovisit = null;
+    private static Resultados llenarresultado(ArrayList<Equipo> aequipos, String local, String visitante, Resultados resultado) {
         boolean check=true;
+        boolean check2=true;
         for (int i = 0; i < aequipos.size()&&check==true; i++) {
             Equipo equipo = aequipos.get(i);
-            String nombre=equipo.getNombre();
-            if (nombre.equalsIgnoreCase(visitante)) {
-                equipovisit=equipo;
+            if (equipo.getNombre().equalsIgnoreCase(visitante)) {
+                resultado.setEquipo2(equipo.getNombre());
+                resultado.setPos_equipo2(equipo.getPosliga());
+                resultado.setPg2(equipo.getAwaywin());
+                resultado.setPe2(equipo.getAwayempate());
+                resultado.setPp2(equipo.getAwaylose());
                 check=false;
             }
         }
-
-        return equipovisit;
-    }
-
-    public Equipo returnlocal(ArrayList<Equipo> Aequipos, String local) {
-        Equipo equipolocal = null;
-        boolean check=true;
-        for (int i = 0; i < Aequipos.size()&&check==true; i++) {
-            Equipo equipo = Aequipos.get(i);
-            String nombre=equipo.getNombre();
-            if (nombre.equalsIgnoreCase(local)) {
-                equipolocal=equipo;
-                check=false;
+        for (int j = 0; j < aequipos.size()&&check2==true; j++) {
+            Equipo equipo = aequipos.get(j);
+            if (equipo.getNombre().equalsIgnoreCase(local)) {
+                resultado.setEquipo1(equipo.getNombre());
+                resultado.setPos_equipo1(equipo.getPosliga());
+                resultado.setPg1(equipo.getHomewin());
+                resultado.setPe1(equipo.getHomeempate());
+                resultado.setPp1(equipo.getHomelose());
+                check2=false;
             }
-
         }
 
-        return equipolocal;
+
+    return resultado;
     }
 
 

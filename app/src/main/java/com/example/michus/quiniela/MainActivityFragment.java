@@ -1,12 +1,15 @@
 package com.example.michus.quiniela;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.*;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +21,20 @@ import com.alexvasilkov.events.Events;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
+
+import nl.littlerobots.cupboard.tools.provider.UriHelper;
+
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
-    private ArrayList<Resultados> items;
-    private Resultadosadapter adapter;
-    String sjornada;
+
+    private ResultadosCursorAdapter adapter;
+
 
     public MainActivityFragment() {
     }
@@ -39,22 +45,23 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         //return inflater.inflate(R.layout.fragment_main, container, false);
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        ListView lvresultados=(ListView)view.findViewById(R.id.lvresultados);
-        items =new ArrayList<>();
-        adapter= new Resultadosadapter(getContext(),R.layout.fragment_inforesultados,items);
+        ListView lvresultados = (ListView) view.findViewById(R.id.lvresultados);
 
+
+        adapter=new ResultadosCursorAdapter(getContext(),Resultados.class);
         lvresultados.setAdapter(adapter);
 
-        lvresultados.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        lvresultados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?>adapterView, View view, int i, long l) {
-            Resultados resultados= (Resultados) adapterView.getItemAtPosition(i);
-            Intent intent=new Intent(getContext(),DetailActivity.class);
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Resultados resultados = (Resultados) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getContext(), DetailActivity.class);
                 intent.putExtra("resultado", resultados);
+
                 startActivity(intent);
             }
         });
-
+        getLoaderManager().initLoader(0, null, this);
         return view;
     }
 
@@ -63,45 +70,26 @@ public class MainActivityFragment extends Fragment {
         super.onStart();
         refresh();
     }
-    private void refresh(){
-        RefreshDataTask task=new RefreshDataTask();
+
+    private void refresh() {
+        RefreshDataTask task = new RefreshDataTask(getActivity().getApplicationContext());
         task.execute();
     }
 
-
-    private class RefreshDataTask extends AsyncTask<Void,Void,ArrayList<Resultados>>{
-        @Override
-        protected ArrayList<Resultados> doInBackground(Void... voids) {
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-            sjornada=preferences.getString("matchday","");
-            //creamos un evento y enviamos el parametro a traves del bus
-            Events.create("traspaso_jornada").param(sjornada).post();
-            ResultadosApi api=new ResultadosApi();
-            EquiposApi apiteams=new EquiposApi();
-            ArrayList<Equipo> aequipos=apiteams.Getequipos();
-            ArrayList<Resultados> result= null;
-            try {
-                result = api.Getresultados(sjornada,aequipos);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Resultados> result) {
-            adapter.clear();
-            for(Resultados resultado: result){
-                adapter.add(resultado);
-
-            }
-
-        }
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return Datamanager.getCursorLoader(getContext());
     }
 
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        adapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        adapter.swapCursor(null);
+    }
 
 
 

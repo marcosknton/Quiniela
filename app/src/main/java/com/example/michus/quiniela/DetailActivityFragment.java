@@ -36,8 +36,7 @@ public class DetailActivityFragment extends Fragment {
     private TextView Tvhomelose;
     private TextView Tvawaylose;
 
-    private TextView Tvresultadolocal1;
-    private TextView Tvresultadovisitante1;
+
 
     private ImageView Ivvistante;
     private ImageView Ivlocal;
@@ -86,8 +85,8 @@ public class DetailActivityFragment extends Fragment {
         Ivvistante=(ImageView) view.findViewById(R.id.Ivvistante);
         Ivlocal=(ImageView)view.findViewById(R.id.Ivlocal);
 
-        String nomlocal=resultado.getLocal().getNombre();
-        String nomvisitante=resultado.getVisitante().getNombre();
+        String nomlocal=resultado.getEquipo1();
+        String nomvisitante=resultado.getEquipo2();
         String horario=resultado.getStatus();
         String[] fecha=resultado.getFecha().split("T");
 
@@ -111,11 +110,11 @@ public class DetailActivityFragment extends Fragment {
         }
 
 
-        Tvposlocal.setText("posición liga: "+resultado.getLocal().getPosliga());
+        Tvposlocal.setText("posición liga: "+resultado.getPos_equipo1());
         Tvlocalname.setText(nomlocal);
-        Tvhomewin.setText("victorias en casa "+resultado.getLocal().getHomewin());
-        Tvhomeempate.setText("empates en casa "+resultado.getLocal().getHomeempate());
-        Tvhomelose.setText("derrotas en casa "+resultado.getLocal().getHomelose());
+        Tvhomewin.setText("victorias en casa "+resultado.getPg1());
+        Tvhomeempate.setText("empates en casa "+resultado.getPe1());
+        Tvhomelose.setText("derrotas en casa "+resultado.getPp1());
         switch ( nomlocal ) {
             case "Real Madrid CF":
                 Ivlocal.setImageResource(R.drawable.realmadrid);
@@ -182,11 +181,11 @@ public class DetailActivityFragment extends Fragment {
                 break;
         }
 
-        Tvposvisitante.setText("posición liga: "+resultado.getVisitante().getPosliga());
-        Tvawaywin.setText("victorias fuera: "+resultado.getVisitante().getAwaywin());
+        Tvposvisitante.setText("posición liga: "+resultado.getPos_equipo2());
+        Tvawaywin.setText("victorias fuera: "+resultado.getPg2());
         Tvawayname.setText(nomvisitante);
-        Tvawayempate.setText("empates fuera: "+resultado.getVisitante().getAwayempate());
-        Tvawaylose.setText("derrotas fuera: "+resultado.getVisitante().getAwaylose());
+        Tvawayempate.setText("empates fuera: "+resultado.getPe2());
+        Tvawaylose.setText("derrotas fuera: "+resultado.getPp2());
         switch ( nomvisitante ) {
             case "Real Madrid CF":
                 Ivvistante.setImageResource(R.drawable.realmadrid);

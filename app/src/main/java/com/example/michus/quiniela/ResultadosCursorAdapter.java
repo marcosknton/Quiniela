@@ -1,52 +1,40 @@
 package com.example.michus.quiniela;
 
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
-
 /**
- * Created by MICHUS on 16/12/2016.
+ * Created by MICHUS on 04/01/2017.
  */
 
-public class Resultadosadapter extends ArrayAdapter<Resultados> {
+public class ResultadosCursorAdapter extends CupboardCursorAdapter <Resultados> {
 
-    public Resultadosadapter(Context context, int resource, List<Resultados> objects) {
-        super(context, resource, objects);
+    public ResultadosCursorAdapter(Context context, Class<Resultados> entityClass) {
+        super(context, entityClass);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View newView(Context context, Resultados model, ViewGroup parent) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View convertView = inflater.inflate(R.layout.fragment_inforesultados, parent, false);
+        return convertView;
+    }
 
-        Resultados resultado=getItem(position);
+    @Override
+    public void bindView(View view, Context context, Resultados resultado) {
         int gollocal=0;
         int golvisitante=0;
 
-
-        if(convertView==null){
-            LayoutInflater inflater=LayoutInflater.from(getContext());
-            convertView=inflater.inflate(R.layout.fragment_inforesultados,parent,false);
-
-        }
-
-        TextView local=(TextView) convertView.findViewById(R.id.Tvlocal);
-        TextView visitante=(TextView) convertView.findViewById(R.id.Tvvisitante);
-        ImageView uno=(ImageView) convertView.findViewById(R.id.Ivuno);
-        ImageView equis=(ImageView) convertView.findViewById(R.id.Ivequis);
-        ImageView dos=(ImageView) convertView.findViewById(R.id.Ivdos);
-
-
+        TextView local=(TextView) view.findViewById(R.id.Tvlocal);
+        TextView visitante=(TextView) view.findViewById(R.id.Tvvisitante);
+        ImageView uno=(ImageView) view.findViewById(R.id.Ivuno);
+        ImageView equis=(ImageView) view.findViewById(R.id.Ivequis);
+        ImageView dos=(ImageView) view.findViewById(R.id.Ivdos);
 
 
         local.setText(resultado.Equipo1);
@@ -78,11 +66,5 @@ public class Resultadosadapter extends ArrayAdapter<Resultados> {
                 Log.d("----STATUS----", String.valueOf(resultado.getStatus()));
             } else equis.setImageResource(R.drawable.equis_sin_tachar);
         }
-
-        return  convertView;
-
-
     }
-
-
 }

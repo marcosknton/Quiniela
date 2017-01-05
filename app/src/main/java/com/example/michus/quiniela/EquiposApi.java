@@ -20,7 +20,7 @@ public class EquiposApi {
     }
     private static String urltable="http://api.football-data.org/v1/competitions/436/leagueTable";
 
-    public ArrayList<Equipo> Getequipos() {
+    public static ArrayList<Equipo> Getequipos() {
         ArrayList<Equipo> Aequipos = new ArrayList<>();
         Uri buildUritable = Uri.parse(urltable)
                 .buildUpon()
@@ -35,8 +35,6 @@ public class EquiposApi {
                 JSONObject object = jsonrestable.getJSONObject(i);
                 String position = object.getString("position");
                 String teamName = object.getString("teamName");
-                //String matchday = object.getString("matchday");
-                String matchday="17";
                 JSONObject home = object.getJSONObject("home");
                 String winshome = home.getString("wins");
                 String drawshome = home.getString("draws");
@@ -46,7 +44,7 @@ public class EquiposApi {
                 String winsawya = away.getString("wins");
                 String drawsaway = away.getString("draws");
                 String lossesaway = away.getString("losses");
-                Equipo equipo = new Equipo(teamName, matchday, position, winshome, drawshome, losseshome, winsawya, drawsaway, lossesaway);
+                Equipo equipo = new Equipo(teamName, position, winshome, drawshome, losseshome, winsawya, drawsaway, lossesaway);
                 Aequipos.add(equipo);
             }
         } catch (JSONException e) {
