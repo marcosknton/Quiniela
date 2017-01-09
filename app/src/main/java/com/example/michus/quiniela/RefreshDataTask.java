@@ -30,6 +30,7 @@ public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
         sjornada = preferences.getString("matchday", "");
 
         ArrayList<Resultados> result = null;

@@ -40,7 +40,7 @@ public class ResultadosCursorAdapter extends CupboardCursorAdapter <Resultados> 
         local.setText(resultado.Equipo1);
         visitante.setText(resultado.Equipo2);
 
-        if (resultado.getStatus().equals("SCHEDULED")||resultado.getStatus().equals("POSTPONED")) {
+        if (resultado.getStatus().equals("SCHEDULED")||resultado.getStatus().equals("POSTPONED")||resultado.getStatus().equals("TIMED")) {
             uno.setImageResource(R.drawable.uno_sin_tachar);
             dos.setImageResource(R.drawable.dos_sin_tachar);
             equis.setImageResource(R.drawable.equis_sin_tachar);

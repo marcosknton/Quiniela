@@ -95,6 +95,10 @@ public class DetailActivityFragment extends Fragment {
                 Tvfecha.setText(fecha[0]+"\n"+fecha[1].substring(0,5) );
                 Tvresultado.setText(" ");
                 break;
+            case "TIMED":
+                Tvfecha.setText(fecha[0]+"\n"+fecha[1].substring(0,5) );
+                Tvresultado.setText(" ");
+                break;
             case "POSTPONED":
                 Tvfecha.setText("APLAZADO");
                 Tvresultado.setText(" ");

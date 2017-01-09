@@ -12,7 +12,7 @@
 
     <EditTextPreference
         android:capitalize="words"
-        android:defaultValue="14"
+        android:defaultValue="9"
         android:inputType="textCapWords"
         android:key="matchday"
         android:selectAllOnFocus="true"
