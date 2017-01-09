@@ -108,6 +108,10 @@ public class DetailActivityFragment extends Fragment {
                 Tvresultado.setText(resultado.gollocal+"-"+resultado.golvisit);
 
                 break;
+            case "IN_PLAY":
+                Tvfecha.setText("EN JUEGO");
+                Tvresultado.setText(resultado.gollocal+"-"+resultado.golvisit);
+                break;
             default:
                 System.out.println("error" );
                 break;
