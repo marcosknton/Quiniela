@@ -25,7 +25,11 @@ public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
         this.context=context;
     }
 
-
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        Events.post("start");
+    }
 
     @Override
     protected Void doInBackground(Void... voids) {
@@ -53,6 +57,6 @@ public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
         super.onPostExecute(aVoid);
         //creamos un evento y enviamos el parametro a traves del bus
         Events.create("traspaso_jornada").param(sjornada).post();
-
+        Events.post("finish");
     }
 }

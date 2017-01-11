@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alexvasilkov.events.Events;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -36,13 +37,17 @@ public class DetailActivityFragment extends Fragment {
     private TextView Tvhomelose;
     private TextView Tvawaylose;
 
-
-
     private ImageView Ivvistante;
     private ImageView Ivlocal;
 
 
     public DetailActivityFragment() {
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Events.register(this);
     }
 
     @Override

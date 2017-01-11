@@ -1,5 +1,6 @@
 package com.example.michus.quiniela;
 
+import android.app.ProgressDialog;
 import android.content.*;
 import android.database.Cursor;
 import android.net.Uri;
@@ -34,6 +35,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
 
     private ResultadosCursorAdapter adapter;
+    private ProgressDialog dialog;
 
 
     public MainActivityFragment() {
@@ -49,6 +51,9 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
 
         adapter=new ResultadosCursorAdapter(getContext(),Resultados.class);
+        dialog= new ProgressDialog(getContext());
+        dialog.setMessage("cargando resultados...");
+
         lvresultados.setAdapter(adapter);
 
         lvresultados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -63,12 +68,23 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         });
         getLoaderManager().initLoader(0, null, this);
         return view;
+
+
     }
 
+    @Events.Subscribe("start")
+    void preRefresh(){
+        dialog.show();
+    }
+    @Events.Subscribe("finish")
+    void afterRefresh(){
+        dialog.dismiss();
+    }
     @Override
     public void onStart() {
         super.onStart();
         refresh();
+        Events.register(this);
     }
 
     private void refresh() {

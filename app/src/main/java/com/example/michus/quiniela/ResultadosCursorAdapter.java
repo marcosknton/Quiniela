@@ -67,4 +67,5 @@ public class ResultadosCursorAdapter extends CupboardCursorAdapter <Resultados> 
             } else equis.setImageResource(R.drawable.equis_sin_tachar);
         }
     }
+
 }
