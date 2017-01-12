@@ -7,11 +7,15 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.*;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -62,7 +66,6 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
                 Resultados resultados = (Resultados) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(getContext(), DetailActivity.class);
                 intent.putExtra("resultado", resultados);
-
                 startActivity(intent);
             }
         });
@@ -71,7 +74,28 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
 
     }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_main,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.clasificacion){
+            startActivity(new Intent(getContext(),Clasificacion.class));
+            return  true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     @Events.Subscribe("start")
     void preRefresh(){
         dialog.show();

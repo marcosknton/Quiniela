@@ -23,7 +23,7 @@ public abstract class CupboardCursorAdapter <T> extends CursorAdapter {
     public CupboardCursorAdapter(Context context, Class<T> entityClass) {
         this(context, cupboard(), entityClass, null);
     }
-
+//
     public CupboardCursorAdapter(Context context, Cupboard cupboard, Class<T> entityClass) {
         this(context, cupboard, entityClass, null);
     }

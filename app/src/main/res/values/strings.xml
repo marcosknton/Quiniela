@@ -79,4 +79,6 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_inforesultado">inforesultado</string>
+    <string name="title_activity_clasificacion">Clasificacion</string>
+    <string name="title_activity_infoclasificacion">infoclasificacion</string>
 </resources>

@@ -23,12 +23,13 @@ public class Equipo implements Serializable{
         this.homeempate = homeempate;
         this.homelose = homelose;
         this.nombre = nombre;
-
         this.posliga = posliga;
         this.awaywin = awaywin;
         this.awayempate = awayempate;
         this.awaylose = awaylose;
     }
+
+    public Equipo(){}
 
     public String getHomewin() {
         return homewin;

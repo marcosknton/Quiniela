@@ -31,10 +31,20 @@
             android:name=".DetailActivity"
             android:label="información encuentro"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <provider
             android:name=".ContentProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false" />
+
+        <activity
+            android:name=".Clasificacion"
+            android:label="@string/title_activity_clasificacion"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".infoclasificacion"
+            android:label="@string/title_activity_infoclasificacion"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

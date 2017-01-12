@@ -36,10 +36,10 @@ public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         sjornada = preferences.getString("matchday", "");
-
+        ArrayList<Equipo> Aequipo=EquiposApi.Getequipos();
         ArrayList<Resultados> result = null;
         try {
-            result = ResultadosApi.Getresultados(sjornada, EquiposApi.Getequipos());
+            result = ResultadosApi.Getresultados(sjornada, Aequipo);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -48,6 +48,8 @@ public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
 
         Datamanager.borraresultados(context);
         Datamanager.guardaresultados(result, context);
+        Datamanager.borrarequipo(context);
+        Datamanager.guardarequipo(Aequipo,context);
 
         return null;
     }
