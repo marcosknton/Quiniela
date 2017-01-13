@@ -47,6 +47,7 @@ public abstract class CupboardCursorAdapter <T> extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         bindView(view, context, getItem(cursor.getPosition()));
+
     }
 
     public T getItem(int position) {

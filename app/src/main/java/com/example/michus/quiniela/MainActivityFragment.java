@@ -105,6 +105,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         dialog.dismiss();
     }
     @Override
+
     public void onStart() {
         super.onStart();
         refresh();

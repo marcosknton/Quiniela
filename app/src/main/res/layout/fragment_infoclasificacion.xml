@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_infoclasificacion"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.michus.quiniela.infoclasificacionFragment"
+    tools:showIn="@layout/infoclasificacion">
+
+
+    <TextView
+        android:text="Tvnombre"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvnombre"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline14"
+        app:layout_constraintRight_toLeftOf="@+id/guideline13"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline12" />
+
+    <TextView
+        android:text="Tvposicion"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/Tvposicion"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline14"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline13"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/Ivescudo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline14"
+        app:layout_constraintRight_toLeftOf="@+id/guideline12" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="455dp"
+        android:id="@+id/guideline12"
+        app:layout_constraintGuide_begin="116dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="116dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline13"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6119792"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="235dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline14"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.21978022"
+        tools:layout_editor_absoluteY="100dp"
+        tools:layout_editor_absoluteX="0dp" />
+</android.support.constraint.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.alexvasilkov.events.Events;
 
@@ -48,8 +49,15 @@ public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
 
         Datamanager.borraresultados(context);
         Datamanager.guardaresultados(result, context);
-        Datamanager.borrarequipo(context);
+        //Datamanager.borrarequipo(context);
         Datamanager.guardarequipo(Aequipo,context);
+
+        int tamaño=Aequipo.size();
+        String nombre=Aequipo.get(0).getNombre();
+
+        Log.d("----EQUIPO-----", String.valueOf(tamaño));
+        Log.d("---EQUIPO---",nombre);
+
 
         return null;
     }
