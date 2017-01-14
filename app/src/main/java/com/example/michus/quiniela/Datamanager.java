@@ -19,6 +19,8 @@ public class Datamanager {
     private static UriHelper URI_HELPER=UriHelper.with(ContentProvider.AUTHORITY);
     //dirección uri de la clase resultado
     private static Uri RESULTADO_URI = URI_HELPER.getUri(Resultados.class);
+
+    /*
     private static Uri EQUIPO_URI=URI_HELPER.getUri(Equipo.class);
 
 
@@ -34,7 +36,7 @@ public class Datamanager {
         return new CursorLoader(context, EQUIPO_URI, null, null, null, null);
     }
 
-
+*/
 
     static void guardaresultados(ArrayList<Resultados> resultados, Context context){
         cupboard().withContext(context).put(RESULTADO_URI,Resultados.class,resultados);

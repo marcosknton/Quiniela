@@ -1,21 +1,29 @@
 package com.example.michus.quiniela;
 
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import static android.R.id.list;
+
+import com.alexvasilkov.events.Events;
+
+import java.util.ArrayList;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ClasificacionFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
+public class ClasificacionFragment extends Fragment {
 
-    private ClasificacionCursorAdapter adapter;
+   ClasificacionAdapter adapter;
+    ArrayList <Equipo> items;
 
 
     public ClasificacionFragment() {
@@ -26,25 +34,46 @@ public class ClasificacionFragment extends Fragment implements LoaderManager.Loa
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_clasificacion, container, false);
         ListView lvclasificacion= (ListView) view.findViewById(R.id.Lvclasificacion);
-        adapter=new ClasificacionCursorAdapter(getContext(),Equipo.class);
+
+        items=new ArrayList<>();
+
+        adapter=new ClasificacionAdapter(getContext(),R.layout.infoclasificacion,items);
 
         lvclasificacion.setAdapter(adapter);
-        getLoaderManager().initLoader(0, null, this);
+
         return view;
     }
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return Datamanager.getCursorLoaderequipo(getContext());
+    public void onStart() {
+        super.onStart();
+        refreshequipos();
+
     }
 
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        adapter.swapCursor(data);
+    private void refreshequipos() {
+        RefreshDataequipos task = new RefreshDataequipos();
+        task.execute();
     }
 
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        adapter.swapCursor(null);
+    class RefreshDataequipos extends AsyncTask <Void,Void,ArrayList<Equipo>>{
+
+        @Override
+        protected ArrayList<Equipo> doInBackground(Void... voids) {
+            ArrayList<Equipo> Aequipo;
+            Aequipo=EquiposApi.Getequipos();
+            return Aequipo;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Equipo> equipos) {
+            //adapter.clear();
+            for (Equipo equipo : equipos){
+                Log.d("--CLASIFICACI onpos---", String.valueOf(equipo.getNombre()));
+                adapter.add(equipo);
+            }
+        }
     }
+
+
+
 }

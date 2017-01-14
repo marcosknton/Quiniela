@@ -5,49 +5,52 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.List;
+
+import static android.R.attr.resource;
 
 /**
  * Created by 46453895j on 13/01/17.
  */
 
-public class ClasificacionCursorAdapter extends CupboardCursorAdapter <Equipo> {
+public class ClasificacionAdapter extends ArrayAdapter<Equipo> {
 
-    public ClasificacionCursorAdapter(Context context, Class<Equipo> entityClass) {
-        super(context, entityClass);
+    public ClasificacionAdapter(Context context, int resource,List<Equipo> objects) {
+        super(context,resource,objects);
     }
 
 
     @Override
-    public View newView(Context context, Equipo equipo, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View convertView = inflater.inflate(R.layout.fragment_infoclasificacion, parent, false);
-        return convertView;
-    }
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Equipo equipo = getItem(position);
+
+        Log.d("--CLASIFICACION LIGA---", String.valueOf(convertView));
+
+        if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.fragment_infoclasificacion, parent, false);
+
+        }
 
 
 
 
-    @Override
-    public void bindView(View view, Context context, Equipo equipo) {
+        TextView nombre = (TextView) convertView.findViewById(R.id.Tvnombre);
+        TextView posicion = (TextView) convertView.findViewById(R.id.Tvposicion);
+        ImageView escudo = (ImageView) convertView.findViewById(R.id.Ivescudo);
 
 
-        String nom=equipo.getNombre();
-        String posicio=equipo.getPosliga();
-
-
-        Log.d("----EQUIPO-----", String.valueOf(equipo.getNombre()));
-
-
-        TextView nombre=(TextView) view.findViewById(R.id.Tvnombre);
-        TextView posicion=(TextView) view.findViewById(R.id.Tvposicion);
-        ImageView escudo=(ImageView) view.findViewById(R.id.Ivescudo);
+        String nom = equipo.getNombre();
+        String posicio = equipo.getPosliga();
 
         nombre.setText(nom);
         posicion.setText(posicio);
 
-        switch ( nom ) {
+        switch (nom) {
             case "Real Madrid CF":
                 escudo.setImageResource(R.drawable.realmadrid);
                 break;
@@ -109,9 +112,11 @@ public class ClasificacionCursorAdapter extends CupboardCursorAdapter <Equipo> {
                 escudo.setImageResource(R.drawable.osasuna);
                 break;
             default:
-                System.out.println("error" );
+                System.out.println("error");
                 break;
         }
+        Log.d("--CLASIFICACION pos---", String.valueOf(convertView));
+        return convertView;
 
     }
 }

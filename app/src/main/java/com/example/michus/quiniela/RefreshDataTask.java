@@ -26,6 +26,8 @@ public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
         this.context=context;
     }
 
+
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -50,7 +52,7 @@ public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
         Datamanager.borraresultados(context);
         Datamanager.guardaresultados(result, context);
         //Datamanager.borrarequipo(context);
-        Datamanager.guardarequipo(Aequipo,context);
+        //Datamanager.guardarequipo(Aequipo,context);
 
         int tamaño=Aequipo.size();
         String nombre=Aequipo.get(0).getNombre();
