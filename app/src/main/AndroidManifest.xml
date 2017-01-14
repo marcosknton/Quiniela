@@ -39,7 +39,7 @@
 
         <activity
             android:name=".Clasificacion"
-            android:label="@string/title_activity_clasificacion"
+            android:label="Clasificación"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".infoclasificacion"

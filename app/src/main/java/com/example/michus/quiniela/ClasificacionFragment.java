@@ -66,7 +66,7 @@ public class ClasificacionFragment extends Fragment {
 
         @Override
         protected void onPostExecute(ArrayList<Equipo> equipos) {
-            //adapter.clear();
+            adapter.clear();
             for (Equipo equipo : equipos){
                 Log.d("--CLASIFICACI onpos---", String.valueOf(equipo.getNombre()));
                 adapter.add(equipo);

@@ -1,6 +1,7 @@
 package com.example.michus.quiniela;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +12,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static android.R.attr.color;
 import static android.R.attr.resource;
 
 /**
- * Created by 46453895j on 13/01/17.
+ * _Created by 46453895j on 13/01/17.
  */
 
 public class ClasificacionAdapter extends ArrayAdapter<Equipo> {
@@ -32,17 +34,13 @@ public class ClasificacionAdapter extends ArrayAdapter<Equipo> {
 
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.fragment_infoclasificacion, parent, false);
+            convertView = inflater.inflate(R.layout.infoclasificacion, parent, false);
 
         }
 
-
-
-
-        TextView nombre = (TextView) convertView.findViewById(R.id.Tvnombre);
-        TextView posicion = (TextView) convertView.findViewById(R.id.Tvposicion);
-        ImageView escudo = (ImageView) convertView.findViewById(R.id.Ivescudo);
-
+        TextView nombre = (TextView) convertView.findViewById(R.id.Tvteam);
+        TextView posicion = (TextView) convertView.findViewById(R.id.Tvorden);
+        ImageView escudo = (ImageView) convertView.findViewById(R.id.Ivlogo);
 
         String nom = equipo.getNombre();
         String posicio = equipo.getPosliga();
@@ -116,6 +114,7 @@ public class ClasificacionAdapter extends ArrayAdapter<Equipo> {
                 break;
         }
         Log.d("--CLASIFICACION pos---", String.valueOf(convertView));
+
         return convertView;
 
     }
