@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
     Context context;
     String sjornada;
+    String sjornada2;
 
 
    public  RefreshDataTask(Context context){
@@ -39,10 +40,12 @@ public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         sjornada = preferences.getString("matchday", "");
+        sjornada2= preferences.getString("matchday2","");
+
         ArrayList<Equipo> Aequipo=EquiposApi.Getequipos();
         ArrayList<Resultados> result = null;
         try {
-            result = ResultadosApi.Getresultados(sjornada, Aequipo);
+            result = ResultadosApi.Getresultados(sjornada,sjornada2, Aequipo);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
