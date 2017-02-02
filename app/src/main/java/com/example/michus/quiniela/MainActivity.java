@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.alexvasilkov.events.Events;
 
 import static com.example.michus.quiniela.R.id.Tvjornada;
+import static com.example.michus.quiniela.R.id.Tvjornada2;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
     @Events.Subscribe("traspaso_jornada")
     private void passjornada(String sjornada) {
         TextView jornada = (TextView) findViewById(Tvjornada);
-        jornada.setText("jornada "+sjornada);
+        jornada.setText("jornada 1Div: "+sjornada);
+    }
+    @Events.Subscribe("traspaso_jornada2")
+    private void passjornada2(String sjornada2) {
+        TextView jornada2 = (TextView) findViewById(Tvjornada2);
+        jornada2.setText("jornada 2Div: "+sjornada2);
     }
 }

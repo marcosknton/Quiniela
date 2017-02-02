@@ -41,6 +41,7 @@ public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
 
         sjornada = preferences.getString("matchday", "");
         sjornada2= preferences.getString("matchday2","");
+        
 
         ArrayList<Equipo> Aequipo=EquiposApi.Getequipos();
         ArrayList<Resultados> result = null;
@@ -72,6 +73,7 @@ public class RefreshDataTask extends AsyncTask<Void,Void,Void> {
         super.onPostExecute(aVoid);
         //creamos un evento y enviamos el parametro a traves del bus
         Events.create("traspaso_jornada").param(sjornada).post();
+        Events.create("traspaso_jornada2").param(sjornada2).post();
         Events.post("finish");
     }
 }

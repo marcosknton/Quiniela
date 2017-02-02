@@ -189,6 +189,75 @@ public class DetailActivityFragment extends Fragment {
             case "CA Osasuna":
                 Ivlocal.setImageResource(R.drawable.osasuna);
                 break;
+
+            case "Levante UD":
+                Ivlocal.setImageResource(R.drawable.levante);
+                break;
+            case "Girona FC":
+                Ivlocal.setImageResource(R.drawable.girona);
+                break;
+            case "Cádiz CF":
+                Ivlocal.setImageResource(R.drawable.cadiz);
+                break;
+            case "Getafe CF":
+                Ivlocal.setImageResource(R.drawable.getafe);
+                break;
+            case "Real Valladolid":
+                Ivlocal.setImageResource(R.drawable.valladolid);
+                break;
+            case "CD Tenerife":
+                Ivlocal.setImageResource(R.drawable.tenerife);
+                break;
+            case "CD Lugo":
+                Ivlocal.setImageResource(R.drawable.lugo);
+                break;
+            case "CF Reus Deportiu":
+                Ivlocal.setImageResource(R.drawable.reus);
+                break;
+            case "Sevilla II":
+                Ivlocal.setImageResource(R.drawable.sevilla);
+                break;
+            case "Real Oviedo":
+                Ivlocal.setImageResource(R.drawable.oviedo);
+                break;
+            case "CD Numancia de Soria":
+                Ivlocal.setImageResource(R.drawable.numancia);
+                break;
+            case "Elche FC":
+                Ivlocal.setImageResource(R.drawable.elche);
+                break;
+            case "Huesca":
+                Ivlocal.setImageResource(R.drawable.huesca);
+                break;
+            case "AD Alcorcón":
+                Ivlocal.setImageResource(R.drawable.alcorcon);
+                break;
+            case "Córdoba CF":
+                Ivlocal.setImageResource(R.drawable.cordoba);
+                break;
+            case "Rayo Vallecano de Madrid":
+                Ivlocal.setImageResource(R.drawable.rayo);
+                break;
+            case "RCD Mallorca":
+                Ivlocal.setImageResource(R.drawable.mallorca);
+                break;
+            case "UD Almería":
+                Ivlocal.setImageResource(R.drawable.almeria);
+                break;
+            case "UCAM Murcia":
+                Ivlocal.setImageResource(R.drawable.murcia);
+                break;
+            case "CD mirandes":
+                Ivlocal.setImageResource(R.drawable.mirandes);
+                break;
+            case "Gimnàstic de Tarragona":
+                Ivlocal.setImageResource(R.drawable.tarragona);
+                break;
+            case "Real Zaragoza":
+                Ivlocal.setImageResource(R.drawable.zaragoza);
+                break;
+
+
             default:
                 System.out.println("error" );
                 break;
@@ -260,6 +329,73 @@ public class DetailActivityFragment extends Fragment {
             case "CA Osasuna":
                 Ivvistante.setImageResource(R.drawable.osasuna);
                 break;
+            case "Levante UD":
+                Ivvistante.setImageResource(R.drawable.levante);
+                break;
+            case "Girona FC":
+                Ivvistante.setImageResource(R.drawable.girona);
+                break;
+            case "Cádiz CF":
+                Ivvistante.setImageResource(R.drawable.cadiz);
+                break;
+            case "Getafe CF":
+                Ivvistante.setImageResource(R.drawable.getafe);
+                break;
+            case "Real Valladolid":
+                Ivvistante.setImageResource(R.drawable.valladolid);
+                break;
+            case "CD Tenerife":
+                Ivvistante.setImageResource(R.drawable.tenerife);
+                break;
+            case "CD Lugo":
+                Ivvistante.setImageResource(R.drawable.lugo);
+                break;
+            case "CF Reus Deportiu":
+                Ivvistante.setImageResource(R.drawable.reus);
+                break;
+            case "Sevilla II":
+                Ivvistante.setImageResource(R.drawable.sevilla);
+                break;
+            case "Real Oviedo":
+                Ivvistante.setImageResource(R.drawable.oviedo);
+                break;
+            case "CD Numancia de Soria":
+                Ivvistante.setImageResource(R.drawable.numancia);
+                break;
+            case "Elche FC":
+                Ivvistante.setImageResource(R.drawable.elche);
+                break;
+            case "Huesca":
+                Ivvistante.setImageResource(R.drawable.huesca);
+                break;
+            case "AD Alcorcón":
+                Ivvistante.setImageResource(R.drawable.alcorcon);
+                break;
+            case "Córdoba CF":
+                Ivvistante.setImageResource(R.drawable.cordoba);
+                break;
+            case "Rayo Vallecano de Madrid":
+                Ivvistante.setImageResource(R.drawable.rayo);
+                break;
+            case "RCD Mallorca":
+                Ivvistante.setImageResource(R.drawable.mallorca);
+                break;
+            case "UD Almería":
+                Ivvistante.setImageResource(R.drawable.almeria);
+                break;
+            case "UCAM Murcia":
+                Ivvistante.setImageResource(R.drawable.murcia);
+                break;
+            case "CD mirandes":
+                Ivvistante.setImageResource(R.drawable.mirandes);
+                break;
+            case "Gimnàstic de Tarragona":
+                Ivvistante.setImageResource(R.drawable.tarragona);
+                break;
+            case "Real Zaragoza":
+                Ivvistante.setImageResource(R.drawable.zaragoza);
+                break;
+
             default:
                 System.out.println("error" );
                 break;

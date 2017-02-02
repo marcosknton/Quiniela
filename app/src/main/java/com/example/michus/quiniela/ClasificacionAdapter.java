@@ -109,6 +109,74 @@ public class ClasificacionAdapter extends ArrayAdapter<Equipo> {
             case "CA Osasuna":
                 escudo.setImageResource(R.drawable.osasuna);
                 break;
+            case "Sevilla II":
+                escudo.setImageResource(R.drawable.sevilla);
+                break;
+            case "Levante UD":
+                escudo.setImageResource(R.drawable.levante);
+                break;
+            case "Girona FC":
+                escudo.setImageResource(R.drawable.girona);
+                break;
+            case "Cádiz CF":
+                escudo.setImageResource(R.drawable.cadiz);
+                break;
+            case "Getafe CF":
+                escudo.setImageResource(R.drawable.getafe);
+                break;
+            case "Real Valladolid":
+                escudo.setImageResource(R.drawable.valladolid);
+                break;
+            case "CD Tenerife":
+                escudo.setImageResource(R.drawable.tenerife);
+                break;
+            case "CD Lugo":
+                escudo.setImageResource(R.drawable.lugo);
+                break;
+            case "CF Reus Deportiu":
+                escudo.setImageResource(R.drawable.reus);
+                break;
+
+            case "Real Oviedo":
+                escudo.setImageResource(R.drawable.oviedo);
+                break;
+            case "CD Numancia de Soria":
+                escudo.setImageResource(R.drawable.numancia);
+                break;
+            case "Elche FC":
+                escudo.setImageResource(R.drawable.elche);
+                break;
+            case "Huesca":
+                escudo.setImageResource(R.drawable.huesca);
+                break;
+            case "AD Alcorcón":
+                escudo.setImageResource(R.drawable.alcorcon);
+                break;
+            case "Córdoba CF":
+                escudo.setImageResource(R.drawable.cordoba);
+                break;
+            case "Rayo Vallecano de Madrid":
+                escudo.setImageResource(R.drawable.rayo);
+                break;
+            case "RCD Mallorca":
+                escudo.setImageResource(R.drawable.mallorca);
+                break;
+            case "UD Almería":
+                escudo.setImageResource(R.drawable.almeria);
+                break;
+            case "UCAM Murcia":
+                escudo.setImageResource(R.drawable.murcia);
+                break;
+            case "CD mirandes":
+                escudo.setImageResource(R.drawable.mirandes);
+                break;
+            case "Gimnàstic de Tarragona":
+                escudo.setImageResource(R.drawable.tarragona);
+                break;
+            case "Real Zaragoza":
+                escudo.setImageResource(R.drawable.zaragoza);
+                break;
+
             default:
                 System.out.println("error");
                 break;

@@ -43,7 +43,7 @@ public class EquiposApi {
                     String drawshome = home.getString("draws");
                     String losseshome = home.getString("losses");
 
-                    JSONObject away = object.getJSONObject("home");
+                    JSONObject away = object.getJSONObject("away");
                     String winsawya = away.getString("wins");
                     String drawsaway = away.getString("draws");
                     String lossesaway = away.getString("losses");
